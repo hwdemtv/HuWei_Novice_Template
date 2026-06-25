@@ -1,0 +1,315 @@
+{
+  "main": {
+    "id": "29fb8621e44af2d5",
+    "type": "split",
+    "children": [
+      {
+        "id": "753943b4a631547e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "20f8536b4c02a0ef",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "📖 开始之前.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "📖 开始之前"
+            }
+          },
+          {
+            "id": "fa2aae4962f9bac3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "00_万法 (开箱即用·Hub)/01_模板/06_外部模板库/使用说明.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "使用说明"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed5baa19e5b84ff7",
+    "type": "split",
+    "children": [
+      {
+        "id": "05283cb0959b8522",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "36d7c6e996a3c3f3",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "0b1ec42ad8c6478b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "b0f9662757431f70",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 415.5
+  },
+  "right": {
+    "id": "7b98f9f95c9f61aa",
+    "type": "split",
+    "children": [
+      {
+        "id": "148c2e00bfd96290",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b134142936d84bcf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "首页.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "首页 的反向链接列表"
+            }
+          },
+          {
+            "id": "fb8c190c25dad2a9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "首页.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "首页 的出链列表"
+            }
+          },
+          {
+            "id": "02a5d6f5dab642ae",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "45a9a7339805f454",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "30988649a61aedab",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "首页.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "首页 的大纲"
+            }
+          },
+          {
+            "id": "bacffb968d7c6f21",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "9c3558c050799325",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Claudian"
+            }
+          }
+        ],
+        "currentTab": 6
+      },
+      {
+        "id": "cdcb792ca796a265",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bf1d9a3d023425c7",
+            "type": "leaf",
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "📖 开始之前.md",
+                "options": {
+                  "collapse-filter": true,
+                  "search": "",
+                  "localJumps": 1,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": false,
+                  "showTags": false,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "collapse-color-groups": true,
+                  "colorGroups": [],
+                  "collapse-display": true,
+                  "showArrow": false,
+                  "textFadeMultiplier": 0,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "collapse-forces": true,
+                  "centerStrength": 0.518713248970312,
+                  "repelStrength": 10,
+                  "linkStrength": 1,
+                  "linkDistance": 250,
+                  "scale": 0.3628873693012114,
+                  "close": true
+                }
+              },
+              "icon": "lucide-git-fork",
+              "title": "📖 开始之前 的关系图"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 390.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "realclaudian:Open Claudian": false,
+      "templater-obsidian:Templater": false,
+      "switcher:打开快速切换": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "graph:查看关系图谱": false,
+      "workspaces:管理工作区布局": false
+    }
+  },
+  "active": "20f8536b4c02a0ef",
+  "lastOpenFiles": [
+    "中控台.canvas",
+    "首页.md",
+    "README-安装说明.md",
+    "LICENSE.md",
+    "📖 开始之前.md",
+    "00_万法 (开箱即用·Hub)/速查卡-3步启动.md",
+    "00_万法 (开箱即用·Hub)/进阶服务包说明.md",
+    "00_万法 (开箱即用·Hub)/08_更新日志.md",
+    "00_万法 (开箱即用·Hub)/00_让经验开始复利.md",
+    "课程进度追踪.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L01-基础设置.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_课程-L01-基础设置.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L00-先导课.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/视频脚本模板.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/视频脚本目录.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L33-结营.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L32-进阶服务.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L31-外部模板库.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L30-系列路线图.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L25-Dataview入门.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L24-知识地图.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L23-AI对手盘.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L22-内容引擎.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L21-复盘沉淀.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L20-费曼学习法.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本/_视频脚本-L15-日常节奏.md",
+    "00_万法 (开箱即用·Hub)/06_课程/_视频脚本",
+    "00_万法 (开箱即用·Hub)/08_更新日志.md.tmp.23840.734b3c48c69e",
+    "00_万法 (开箱即用·Hub)/08_更新日志.md.tmp.23840.bae4ed4b41ed",
+    "00_万法 (开箱即用·Hub)/08_更新日志.md.tmp.23840.bc72e51a3cf8",
+    "00_万法 (开箱即用·Hub)/08_更新日志.md.tmp.23840.9cc3329eeb7f",
+    "00_万法 (开箱即用·Hub)/_dashboard",
+    "00_万法 (开箱即用·Hub)/_dashboard.html",
+    "00_万法 (开箱即用·Hub)/_dashboard_data.json",
+    "00_万法 (开箱即用·Hub)/_dashboard_data.json.tmp.23840.49ff642645ce",
+    "_dashboard",
+    "纳戒/日历面板.png",
+    "纳戒/在文档中插入模版.png",
+    "纳戒/局部图谱.png",
+    "纳戒/命令面板输入反向.png",
+    "纳戒/出链列表.png",
+    "纳戒/反向链接.png",
+    "纳戒/关系图谱.png",
+    "纳戒/搜索面板的两个按钮.png",
+    "纳戒/全局搜索面板.png",
+    "纳戒/Calendar面板按钮.png"
+  ]
+}

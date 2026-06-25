@@ -1,0 +1,13 @@
+# Claude Code session files
+.claude/
+
+# Claudian plugin data
+.claudian/
+
+# Obsidian trash
+.trash/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
