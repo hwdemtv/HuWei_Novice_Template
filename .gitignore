@@ -11,3 +11,12 @@
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Obsidian 工作区状态（每次打开 Obsidian 都会变，不跟踪）
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# 打包产物（网盘分发用，不入库）
+*.rar
+*.zip
+*.7z
