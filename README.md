@@ -6,9 +6,9 @@
 
 [![Obsidian](https://img.shields.io/badge/Obsidian-最新版-7C3AED?style=for-the-badge&logo=obsidian&logoColor=white)](https://obsidian.md)
 [![License](https://img.shields.io/badge/License-原创许可-red?style=for-the-badge)](LICENSE.md)
-[![Template](https://img.shields.io/badge/模板-73个-0EA5E9?style=for-the-badge)](00_万法%20(开箱即用·Hub)/01_模板/)
-[![Plugins](https://img.shields.io/badge/插件-14个预装-10B981?style=for-the-badge)](.obsidian/community-plugins.json)
-[![Course](https://img.shields.io/badge/课程-23课-F59E0B?style=for-the-badge)](00_万法%20(开箱即用·Hub)/04_课程/)
+[![Template](https://img.shields.io/badge/模板-80%2B个-0EA5E9?style=for-the-badge)](00_万法%20(开箱即用·Hub)/01_模板/)
+[![Plugins](https://img.shields.io/badge/插件-16个预装-10B981?style=for-the-badge)](.obsidian/community-plugins.json)
+[![Course](https://img.shields.io/badge/课程-23课-F59E0B?style=for-the-badge)](00_万法%20(开箱即用·Hub)/06_课程/)
 
 > 不是花哨的笔记系统，而是一个帮你真正「学进去、讲出来、用得上」的知识操作系统。
 
@@ -27,7 +27,9 @@
  Inbox    Lab      Feynman    Output    Archive
 ```
 
-73 个模板、14 个预装插件、3 个 AI 工具、23 课系统教程——**解压即用，无需折腾**。
+80+ 个模板、16 个预装插件、3 个 AI 工具、23 课系统教程——**解压即用，无需折腾**。
+
+> 📖 完整的安装步骤、文件夹结构、包含内容与常见问题，请见 **[README-安装说明](README-安装说明.md)**（本页只做概览）。
 
 ---
 
@@ -57,7 +59,9 @@
 纳戒                   附件统一存储
 ```
 
-### 📚 73 个预置模板（27 个分类）
+> 「一心 / 二旋 / 纳戒」看不懂？看 [命名对照表（白话版）](00_万法%20(开箱即用·Hub)/00_命名对照表.md)。
+
+### 📚 80+ 个预置模板（27 个分类）
 
 覆盖 **日记、项目、读书、课程、财务、健康、旅行、娱乐、决策** 等场景，按需调用。
 
@@ -78,7 +82,7 @@
 - **Level 3** · 进阶篇：AI 工具、模板自定义
 - **Level 4** · 大师篇：知识体系搭建、长期运营
 
-### 🔌 14 个预装插件（开箱即用）
+### 🔌 16 个预装插件（5 个默认启用）
 
 | 默认启用 | 用途 |
 |----------|------|
@@ -88,7 +92,7 @@
 | Outliner | 大纲拖拽整理 |
 | Minimal Settings | 配套 Minimal 主题 |
 
-> 还预装了 Excalidraw、Tasks、Table Editor 等 9 个进阶插件，按需启用。
+> 另有 11 个进阶插件（Excalidraw、Tasks、Table Editor、Realclaudian、Surfing 等）已预装但默认关闭，按需启用。
 
 ---
 
@@ -106,25 +110,9 @@
 
 ### 3. 开始使用
 
-打开 `📖 开始之前.md`，跟着做 3 件事。
+打开 `📖 开始之前.md`，跟着做 3 件事。或直接打开 `中控台.canvas` 查看可视化仪表盘。
 
-或者直接打开 `中控台.canvas` 查看可视化仪表盘。
-
----
-
-## 常见问题
-
-**Q：需要付费吗？**
-A：Obsidian 本体免费，本模板库完全免费。
-
-**Q：可以在手机上用吗？**
-A：可以，Obsidian 支持 iOS / Android，建议先在电脑上熟悉。
-
-**Q：我想加更多模板？**
-A：放在 `00_万法/01_模板/` 下按分类新建即可。
-
-**Q：插件装不上？**
-A：检查网络，部分插件需要科学上网。
+> 📝 详细的插件启用、Templater/Dataview 配置确认见 **[README-安装说明](README-安装说明.md)**。
 
 ---
 

@@ -52,21 +52,46 @@ FROM "10_一心 (随手丢·Inbox)"
 
 保存后，这段会自动变成「Inbox 里所有笔记的列表」。
 
-### 2. 三种查询类型
+### 2. 四种查询类型
 
 | 类型 | 长什么样 | 什么时候用 |
 |------|---------|-----------|
 | `LIST` | 一个列表（带标题） | 想要一个简单的清单 |
 | `TABLE` | 一个表格（带多列） | 想显示笔记的多个属性 |
 | `TASK` | 待办事项列表 | 想汇总所有 `- [ ]` 任务 |
+| `CALENDAR` | 日历热力图 | 想看某日期字段的分布节奏（如阅读/写作打卡） |
 
-### 3. 两个关键语句：`FROM` 和 `WHERE`
+### 3. 四个关键语句：`FROM` / `WHERE` / `SORT` / `GROUP BY`
 
 - `FROM "文件夹"` 或 `FROM #标签` —— **从哪里找**（圈定范围）
 - `WHERE 条件` —— **满足什么**（精确筛选）
 - `SORT 字段 DESC` —— **怎么排**（DESC 倒序，新在上）
+- `GROUP BY 字段` —— **怎么分组**（把结果按某字段归类，如把待办按来源笔记归并）
 
 筛选条件用的是笔记的 **frontmatter 字段**（L03 学过的「身份证」）。比如你的火种有 `status: 火种`，就能 `WHERE status = "火种"`。
+
+> [!example] 📋 查询语法速查表（写不出查询时翻这里）
+> **FROM 数据来源（六种写法）**：
+>
+> | 写法 | 含义 |
+> |------|------|
+> | `FROM "文件夹"` | 扫描该文件夹及子文件夹 |
+> | `FROM #标签` | 扫描打了该标签的笔记 |
+> | `FROM [[笔记名]]` | 扫描链接到该笔记的所有笔记 |
+> | `FROM ""` | 扫描整个仓库 |
+> | `FROM -"文件夹"` | **排除**某文件夹（常用 `-00_万法` 排除模板区） |
+> | `FROM "A" OR "B"` | 多来源合并 |
+>
+> **WHERE 运算符**：
+>
+> | 运算符 | 含义 | 示例 |
+> |--------|------|------|
+> | `=` / `!=` | 等于 / 不等于 | `WHERE status = "已完成"` |
+> | `>` `<` `>=` `<=` | 大小比较 | `WHERE rating > 3` |
+> | `AND` / `OR` | 逻辑与 / 或 | `WHERE rating > 3 AND pages < 300` |
+> | `contains(字段, 值)` | 包含某值 | `WHERE contains(file.tags, "#推荐")` |
+>
+> 💡 这两张表覆盖 80% 的日常查询需求。
 
 ---
 
@@ -149,6 +174,81 @@ GROUP BY file.link
 | **按标签聚合** | 把所有 `#复盘` 笔记做成经验库 | `FROM #复盘` |
 | **过期预警** | 找出 30 天没改过的草稿 | `WHERE file.mtime < date(today) - dur(30 days)` |
 
+### 实战：搭一个「年度读书看板」
+
+这是 Dataview 最过瘾的用法——把散落的读书笔记自动汇总成一个多维度看板。**前提：每篇读书笔记的 frontmatter 字段必须统一**（属性设计决定了查询的天花板）。
+
+**第 0 步｜统一读书笔记属性**（你的读书笔记模板）：
+
+```yaml
+---
+type: 读书笔记
+author: 作者名
+category: 心理学/技术/文学
+rating: 4
+pages: 350
+status: 已完成   # 已完成 / 进行中 / 待阅读
+started: 2026-01-15
+finished: 2026-02-20
+---
+```
+
+字段统一后，下面 4 个查询各管一块，拼成一个完整看板：
+
+**① 年度统计**（总数 / 平均页数 / 平均评分）：
+
+````markdown
+```dataview
+TABLE length(rows) AS "读书总数", round(sum(rows.pages)/length(rows)) AS "平均页数", round(sum(rows.rating)/length(rows), 1) AS "平均评分"
+FROM "读书笔记"
+WHERE status = "已完成" AND finished >= date("2026-01-01")
+```
+````
+
+**② 高分书单**（评分 ≥ 4，按评分排序）：
+
+````markdown
+```dataview
+TABLE author AS "作者", rating AS "评分", finished AS "完成日期"
+FROM "读书笔记"
+WHERE rating >= 4 AND status = "已完成"
+SORT rating DESC
+```
+````
+
+**③ 按类别统计**（用 `GROUP BY` 分组）：
+
+````markdown
+```dataview
+TABLE length(rows) AS "数量", round(avg(rows.rating), 1) AS "均分"
+FROM "读书笔记"
+WHERE status = "已完成"
+GROUP BY category
+SORT length(rows) DESC
+```
+````
+
+**④ 阅读日历**（用 `CALENDAR`，热力图看阅读节奏）：
+
+````markdown
+```dataview
+CALENDAR finished
+FROM "读书笔记"
+WHERE status = "已完成"
+```
+````
+
+> [!tip] 💡 举一反三
+> 把"读书"换成"项目""课程""健身记录"——同一套结构能汇总**任何有统一属性的内容**。钥匙永远是先统一 frontmatter。
+
+> [!example] 🧮 常用函数速查
+> `length(rows)` 数量 · `sum(rows.字段)` 求和 · `avg(rows.字段)` 均值 · `round(值, 小数位)` 四舍五入 · `date("2026-01-01")` 日期 · `dur(30 days)` 时间段 · `contains(字段, 值)` 包含。
+> 用了 `GROUP BY` 后，组内数据要用 `rows.字段` 访问（如 `rows.pages`）。
+
+> [!info]- 深入（可选）：`FLATTEN` 与 `DataviewJS`
+> - **`FLATTEN`**：把列表字段"摊平"成多行。一篇笔记若有多个作者 `authors: [A, B]`，`FLATTEN authors` 会拆成两行各算一次，适合统计嵌套列表。
+> - **`DataviewJS`**：用 `` ```dataviewjs `` 代码块写 JavaScript，能做查询语言做不到的复杂逻辑（循环、条件渲染）。高阶玩家专属，需要时再查[官方文档](https://blacksmithgu.github.io/obsidian-dataview/)。
+
 > [!warning] ⚠️ 常见报错
 > - **查询不显示内容**：检查 `FROM` 的文件夹名/标签名是否完全一致（含中文和括号）
 > - **表格列是空的**：检查 frontmatter 字段名拼写，`status` 不是 `Status`（区分大小写）
@@ -161,6 +261,8 @@ GROUP BY file.link
 > - [[首页]] — 看现成的 Dataview 查询长什么样
 > - [[课程进度追踪]] — 另一个 Dataview 仪表盘范例
 > - [Dataview 官方文档](https://blacksmithgu.github.io/obsidian-dataview/) — 所有查询语法（英文，需要时查）
+
+> 📎 本课的查询语法速查表与「年度读书看板」实战，部分参考自 SerpentSource《Obsidian 知识管理大师课 3.0》第 12 章。
 
 ---
 
