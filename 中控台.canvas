@@ -1,6 +1,6 @@
 {
 	"nodes":[
-		{"id":"hub","type":"text","text":"### 00\n## 🏛️ 万法\n#### Hub · 开箱即用\n*140 笔记 · 23 课程*\n\n[[首页|📂 进入]]","x":35,"y":395,"width":245,"height":265,"color":"2"},
+		{"id":"hub","type":"text","text":"### 00\n## 🏛️ 万法\n#### Hub · 开箱即用\n*140 笔记 · 26 课程*\n\n[[首页|📂 进入]]","x":35,"y":395,"width":245,"height":265,"color":"2"},
 		{"id":"inbox","type":"text","text":"### 10\n## 📥 一心\n#### Inbox · 随手丢\n*5 篇笔记*\n\n[[10_一心 (随手丢·Inbox)/示例-今天想写一篇关于效率工具的对比|📂 进入]]","x":307,"y":395,"width":253,"height":265,"color":"3"},
 		{"id":"lab","type":"text","text":"### 20\n## 🔧 二旋\n#### Lab · 磨一磨\n*4 篇笔记*\n\n[[20_二旋 (磨一磨·Lab)/示例-效率工具对比|📂 进入]]","x":579,"y":395,"width":241,"height":265,"color":"5"},
 		{"id":"output","type":"text","text":"### 30\n## 🚀 三进阶\n#### Output · 出锅了\n*5 篇笔记*\n\n[[30_三进阶 (出锅了·Output)/发布清单|📂 进入]]","x":851,"y":395,"width":245,"height":265,"color":"4"},

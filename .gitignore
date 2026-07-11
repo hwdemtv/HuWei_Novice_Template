@@ -1,5 +1,11 @@
-# Claude Code session files
-.claude/
+# Claude Code session files（会话隐私，不推送）
+.claude/sessions/
+.claude/agents/
+
+# 以下 .claude/ 文件需要推送 GitHub：
+# .claude/CLAUDE.md       — 项目指令（写入纪律+记忆管线）
+# .claude/commands/*.md   — 8 个 slash commands
+# .claude/skills/         — 技能文件
 
 # Claudian plugin data
 .claudian/

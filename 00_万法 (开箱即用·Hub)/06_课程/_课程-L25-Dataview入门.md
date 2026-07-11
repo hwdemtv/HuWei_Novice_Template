@@ -178,7 +178,7 @@ GROUP BY file.link
 
 这是 Dataview 最过瘾的用法——把散落的读书笔记自动汇总成一个多维度看板。**前提：每篇读书笔记的 frontmatter 字段必须统一**（属性设计决定了查询的天花板）。
 
-**第 0 步｜统一读书笔记属性**（你的读书笔记模板）：
+**第 0 步｜统一读书笔记属性**（用 [[00_万法 (开箱即用·Hub)/01_模板/02_理解加工/模板-读书笔记|读书笔记模板]]）：
 
 ```yaml
 ---
@@ -200,8 +200,7 @@ finished: 2026-02-20
 ````markdown
 ```dataview
 TABLE length(rows) AS "读书总数", round(sum(rows.pages)/length(rows)) AS "平均页数", round(sum(rows.rating)/length(rows), 1) AS "平均评分"
-FROM "读书笔记"
-WHERE status = "已完成" AND finished >= date("2026-01-01")
+WHERE type = "读书笔记" AND status = "已完成" AND finished >= date("2026-01-01")
 ```
 ````
 
@@ -210,8 +209,7 @@ WHERE status = "已完成" AND finished >= date("2026-01-01")
 ````markdown
 ```dataview
 TABLE author AS "作者", rating AS "评分", finished AS "完成日期"
-FROM "读书笔记"
-WHERE rating >= 4 AND status = "已完成"
+WHERE type = "读书笔记" AND rating >= 4 AND status = "已完成"
 SORT rating DESC
 ```
 ````
@@ -221,8 +219,7 @@ SORT rating DESC
 ````markdown
 ```dataview
 TABLE length(rows) AS "数量", round(avg(rows.rating), 1) AS "均分"
-FROM "读书笔记"
-WHERE status = "已完成"
+WHERE type = "读书笔记" AND status = "已完成"
 GROUP BY category
 SORT length(rows) DESC
 ```
@@ -233,8 +230,7 @@ SORT length(rows) DESC
 ````markdown
 ```dataview
 CALENDAR finished
-FROM "读书笔记"
-WHERE status = "已完成"
+WHERE type = "读书笔记" AND status = "已完成"
 ```
 ````
 
@@ -261,8 +257,6 @@ WHERE status = "已完成"
 > - [[首页]] — 看现成的 Dataview 查询长什么样
 > - [[课程进度追踪]] — 另一个 Dataview 仪表盘范例
 > - [Dataview 官方文档](https://blacksmithgu.github.io/obsidian-dataview/) — 所有查询语法（英文，需要时查）
-
-> 📎 本课的查询语法速查表与「年度读书看板」实战，部分参考自 SerpentSource《Obsidian 知识管理大师课 3.0》第 12 章。
 
 ---
 

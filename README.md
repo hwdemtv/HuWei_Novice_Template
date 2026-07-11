@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/License-原创许可-red?style=for-the-badge)](LICENSE.md)
 [![Template](https://img.shields.io/badge/模板-80%2B个-0EA5E9?style=for-the-badge)](00_万法%20(开箱即用·Hub)/01_模板/)
 [![Plugins](https://img.shields.io/badge/插件-16个预装-10B981?style=for-the-badge)](.obsidian/community-plugins.json)
-[![Course](https://img.shields.io/badge/课程-23课-F59E0B?style=for-the-badge)](00_万法%20(开箱即用·Hub)/06_课程/)
+[![Course](https://img.shields.io/badge/课程-26课-F59E0B?style=for-the-badge)](00_万法%20(开箱即用·Hub)/06_课程/)
 
 > 不是花哨的笔记系统，而是一个帮你真正「学进去、讲出来、用得上」的知识操作系统。
 
@@ -27,7 +27,7 @@
  Inbox    Lab      Feynman    Output    Archive
 ```
 
-80+ 个模板、16 个预装插件、3 个 AI 工具、23 课系统教程——**解压即用，无需折腾**。
+80+ 个模板、16 个预装插件、3 个 AI 工具、26 课系统教程——**解压即用，无需折腾**。
 
 > 📖 完整的安装步骤、文件夹结构、包含内容与常见问题，请见 **[README-安装说明](README-安装说明.md)**（本页只做概览）。
 
@@ -51,8 +51,9 @@
 
 ```
 00_万法（Hub）         工具箱：费曼学习法、模板、课程
-  └─ 05_自定义模板库    你自己的模板放这里
-10_一心（收件箱）      输入：想法、资料、灵感
+  ├─ 07_第二大脑         AI 技能 + 用户画像
+  └─ 08_长期记忆         结构化长期记忆
+10_一心（收件箱）      输入：想法、资料、灵感、候选记忆
 20_二旋（实验室）      理解：用费曼法加工知识
 30_三进阶（成品区）    输出：文章、讲稿、方案
 40_四归藏（归档区）    沉淀：归档复用
@@ -73,7 +74,7 @@
 | **学术翻译降重姬** | 学术文本翻译 + 降重，保持专业度 |
 | **Obsidian 格式净化体** | 一键清理 Markdown 格式问题 |
 
-### 🎓 4 级课程体系（23 课）
+### 🎓 4 级课程体系（26 课）
 
 从安装到精通，手把手带你跑通整个系统：
 
