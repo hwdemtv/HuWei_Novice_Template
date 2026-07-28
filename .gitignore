@@ -33,3 +33,6 @@ Desktop.ini
 
 # 自更新覆盖前整备份（spiral-updater 生成，本地保留，不入库）
 .更新备份_*/
+
+# 插件运行时状态（非 Key，是 UI/配置状态，入库会频繁变动）
+.obsidian/plugins/*/data.json
