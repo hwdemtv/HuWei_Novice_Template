@@ -1,0 +1,29 @@
+/* spiral-updater 样式 —— 更新确认 Modal / 进度提示 */
+
+.spiral-updater-modal .mod-warning {
+  color: var(--text-warning);
+}
+
+.spiral-updater-modal .release-notes {
+  margin-top: 0.75em;
+  padding: 0.75em;
+  background: var(--background-secondary);
+  border-radius: 6px;
+  white-space: pre-wrap;
+  max-height: 220px;
+  overflow-y: auto;
+  font-size: var(--font-ui-small);
+}
+
+.spiral-updater-modal .change-summary {
+  margin-top: 0.5em;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.spiral-updater-modal .modal-button-container {
+  margin-top: 1em;
+  display: flex;
+  gap: 0.5em;
+  justify-content: flex-end;
+}

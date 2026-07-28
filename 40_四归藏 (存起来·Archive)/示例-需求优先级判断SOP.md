@@ -1,5 +1,6 @@
 ---
 created: 2026-06-22
+asset_id: demand-prioritization
 status: 已归档
 archived_date: 2026-06-22
 归档原因: SOP 已推行 2 周，归档并追踪效果

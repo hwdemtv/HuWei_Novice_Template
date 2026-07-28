@@ -1,0 +1,25 @@
+{
+  "name": "spiral-updater",
+  "version": "1.0.0",
+  "description": "互为螺旋·知识操作系统的安全自更新插件（模板/系统文件，绝不触碰笔记数据）",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "build": "node esbuild.config.mjs production",
+    "dev": "node esbuild.config.mjs"
+  },
+  "keywords": ["obsidian", "互为螺旋", "updater", "template"],
+  "author": "互为螺旋",
+  "license": "SEE LICENSE IN ../../LICENSE.md",
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "minimatch": "^9.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "builtin-modules": "^4.0.0",
+    "esbuild": "^0.21.4",
+    "obsidian": "^1.7.2",
+    "typescript": "^5.4.5"
+  }
+}

@@ -6,5 +6,8 @@
   "showLineNumber": true,
   "strictLineBreaks": false,
   "showUnsupportedFiles": true,
-  "uriCallbacks": true
+  "uriCallbacks": true,
+  "readableLineLength": true,
+  "defaultViewMode": "source",
+  "propertiesInDocument": "visible"
 }

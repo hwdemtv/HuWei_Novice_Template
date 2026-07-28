@@ -1,0 +1,193 @@
+/* Dashboard.md only — compact four-panel control center */
+/* Obsidian's readable-line-width otherwise squeezes the whole dashboard. */
+.markdown-reading-view.dashboard .markdown-preview-sizer,
+.markdown-preview-view.dashboard .markdown-preview-sizer {
+  width: calc(100% - 48px) !important;
+  max-width: 1480px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+/* Live Preview(实时预览)适配：打破 CM6 可读行宽，让 dataviewjs dashboard 与阅读视图同样铺满，
+   否则容器变窄会导致 grid 面板互相穿透重叠。 */
+.markdown-source-view.dashboard .cm-sizer,
+.markdown-source-view.dashboard .cm-content,
+.markdown-source-view.dashboard .cm-embed-block,
+.markdown-source-view.dashboard .markdown-rendered,
+.markdown-source-view.dashboard .block-language-dataviewjs {
+  width: calc(100% - 48px) !important;
+  max-width: 1480px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.dashboard .dashboard-shell {
+  --dash-ink: var(--text-normal);
+  --dash-muted: var(--text-muted);
+  --dash-line: color-mix(in srgb, var(--background-modifier-border) 70%, transparent);
+  --dash-card: color-mix(in srgb, var(--background-primary) 93%, #f7f7ff);
+  --dash-purple: #7d62d9;
+  --dash-purple-light: #eeeaff;
+  display: flex;
+  flex-wrap: wrap;
+  /* 用 flex 弹性换行替代 grid auto-fit + 跨整行——后者在实时预览(CM6)动态宽度下解析错乱导致面板重叠。
+     flex 物理换行不依赖列数计算，CM6 下更稳。每个 panel 的 flex-basis 决定列数，rhythm 占满整行。 */
+  gap: 18px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 22px auto 36px;
+}
+
+.dashboard .dashboard-panel {
+  flex: 1 1 460px;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--dash-line);
+  border-radius: 14px;
+  background: var(--dash-card);
+  box-shadow: 0 5px 18px rgba(77, 61, 120, 0.045);
+}
+
+.dashboard .overview-panel,
+.dashboard .heatmap-panel { min-height: 310px; }
+.dashboard .shelf-panel,
+.dashboard .board-panel { min-height: 350px; }
+
+.dashboard .panel-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin-bottom: 16px;
+}
+
+.dashboard .panel-title {
+  margin: 0;
+  color: var(--dash-ink);
+  font-size: 1.15em;
+  font-weight: 750;
+}
+
+.dashboard .panel-subtitle { color: var(--dash-muted); font-size: 0.82em; }
+
+.dashboard .stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.dashboard .stat-card {
+  display: flex;
+  min-height: 102px;
+  padding: 13px 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--dash-line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--background-primary) 94%, #ffffff);
+  text-align: center;
+}
+.dashboard .stat-label, .dashboard .stat-hint { color: var(--dash-muted); font-size: 0.75em; }
+.dashboard .stat-number { color: var(--dash-ink); font-size: 1.75em; line-height: 1; }
+
+.dashboard .task-preview { margin-top: 16px; }
+.dashboard .mini-heading { margin: 0 0 7px; font-size: 0.9em; }
+.dashboard .task-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; margin: 0; padding-left: 18px; }
+.dashboard .task-item { overflow: hidden; color: var(--dash-muted); font-size: 0.82em; text-overflow: ellipsis; white-space: nowrap; }
+.dashboard .data-quality { margin: 12px 0 0; color: var(--dash-muted); font-size: 0.73em; }
+
+.dashboard .heatmap-months { display: grid; grid-template-columns: 22px repeat(17, 1fr); margin-left: 2px; color: var(--dash-muted); font-size: 0.7em; }
+.dashboard .heatmap-month { min-height: 18px; text-align: left; }
+.dashboard .heatmap-body { display: grid; gap: 5px; }
+.dashboard .heatmap-row { display: grid; grid-template-columns: 22px repeat(17, minmax(8px, 1fr)); gap: 5px; align-items: center; }
+.dashboard .weekday { color: var(--dash-muted); font-size: 0.7em; }
+.dashboard .heat-cell { display: block; aspect-ratio: 1; min-height: 10px; border-radius: 2px; background: #f1edff; }
+.dashboard .level-1 { background: #dcd1ff; }
+.dashboard .level-2 { background: #b49cf4; }
+.dashboard .level-3 { background: #7954d5; }
+.dashboard .future { opacity: 0.28; }
+.dashboard .heatmap-legend { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 16px; }
+.dashboard .heatmap-legend .heat-cell { width: 11px; min-height: 11px; }
+.dashboard .legend-label { color: var(--dash-muted); font-size: 0.72em; }
+
+.dashboard .rhythm-panel { flex: 1 1 100%; min-height: 0; }  /* 时间节奏占满整行（flex 换行天然独占一行）*/
+.dashboard .shelf-panel { flex: 1 1 460px; }  /* 书架走弹性两列，不再需要 grid-column 钉位 */
+.dashboard .rhythm-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.dashboard .rhythm-stat { padding: 12px; border-radius: 9px; background: color-mix(in srgb, var(--background-primary) 92%, #f2efff); }
+.dashboard .rhythm-period, .dashboard .rhythm-hint { display: block; color: var(--dash-muted); font-size: 0.76em; }
+.dashboard .rhythm-value { display: block; margin: 5px 0; font-size: 1.04em; }
+.dashboard .rhythm-actions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+.dashboard .rhythm-action { display: flex; min-height: 128px; padding: 13px; flex-direction: column; border: 1px solid var(--dash-line); border-radius: 9px; background: var(--background-primary); }
+.dashboard .rhythm-action-title { margin: 0; font-size: 0.9em; }
+.dashboard .rhythm-action-desc { margin: 8px 0; color: var(--dash-muted); font-size: 0.76em; line-height: 1.45; }
+.dashboard .rhythm-action a { margin-top: auto; font-size: 0.78em; }
+
+.dashboard .shelf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.dashboard .shelf-grid > .empty-state { grid-column: 1 / -1; }  /* 书架为空时占满整行，避免空状态文字在 auto-fit 里居中串位（参照 knowledge-shelf .shelf-empty）*/
+.dashboard .shelf-entry { margin: -7px 0 12px; font-size: 0.8em; }
+.dashboard .book-card {
+  display: flex;
+  min-height: 185px;
+  padding: 16px;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid var(--dash-line);
+  border-radius: 10px;
+  background: linear-gradient(145deg, #e8efff, var(--background-primary) 65%);
+}
+.dashboard .book-tone-1 { background: linear-gradient(145deg, #fff1df, var(--background-primary) 65%); }
+.dashboard .book-tone-2 { background: linear-gradient(145deg, #f4e8ff, var(--background-primary) 65%); }
+.dashboard .book-tone-3 { background: linear-gradient(145deg, #e2f6ef, var(--background-primary) 65%); }
+.dashboard .book-type, .dashboard .book-date, .dashboard .project-meta { color: var(--dash-muted); font-size: 0.74em; }
+.dashboard .book-card a { margin: 8px 0; color: var(--dash-ink); font-weight: 700; line-height: 1.35; }
+
+.dashboard .board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.dashboard .board-column { min-height: 245px; padding: 13px; border: 1px solid var(--dash-line); border-radius: 10px; background: color-mix(in srgb, var(--background-primary) 95%, #ffffff); }
+.dashboard .board-column.idea { border-top: 3px solid #8ab4f8; }
+.dashboard .board-column.doing { border-top: 3px solid #e2b762; }
+.dashboard .board-column.done { border-top: 3px solid #75b798; }
+.dashboard .board-column-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.dashboard .board-column-title { margin: 0; font-size: 0.86em; }
+.dashboard .board-count { color: var(--dash-muted); font-size: 0.8em; }
+.dashboard .project-card { display: flex; gap: 6px; margin-top: 8px; padding: 10px; flex-direction: column; border: 1px solid var(--dash-line); border-radius: 7px; background: var(--background-primary); }
+.dashboard .project-card a { color: var(--dash-ink); font-size: 0.86em; font-weight: 600; line-height: 1.35; }
+.dashboard .empty-state { margin: 10px 0; color: var(--dash-muted); font-size: 0.82em; }
+
+/* 课程进度追踪：总进度独立卡片 + 进度条 */
+.dashboard .progress-hero {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 18px; margin-bottom: 14px;
+  border: 1px solid var(--dash-line); border-radius: 10px;
+  background: linear-gradient(135deg, #f0edff, var(--background-primary) 60%);
+}
+.dashboard .progress-hero .stat-label { font-size: 0.9em; font-weight: 700; white-space: nowrap; }
+.dashboard .progress-hero-right { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+.dashboard .progress-bar {
+  flex: 1; height: 10px; border-radius: 5px; overflow: hidden;
+  background: color-mix(in srgb, var(--background-modifier-border) 50%, transparent);
+}
+.dashboard .progress-bar-fill {
+  height: 100%; border-radius: 5px;
+  background: linear-gradient(90deg, #7d62d9, #9d7fff);
+  transition: width 0.4s ease;
+}
+
+/* 课程卡片状态色条 */
+.dashboard .project-card.status-已完成 { border-left: 3px solid #75b798; }
+.dashboard .project-card.status-进行中 { border-left: 3px solid #e2b762; }
+.dashboard .project-card.status-未开始 { border-left: 3px solid #8ab4f8; }
+
+/* 课程进度追踪页：overview + board 上下排列各占满整行 */
+.course-tracker .overview-panel,
+.course-tracker .board-panel { flex: 1 1 100%; }
+
+@media (max-width: 900px) {
+  .dashboard .dashboard-shell { grid-template-columns: 1fr; }
+  .dashboard .rhythm-panel,
+  .dashboard .shelf-panel { grid-column: 1; }
+}
+@media (max-width: 600px) {
+  .markdown-reading-view.dashboard .markdown-preview-sizer,
+  .markdown-preview-view.dashboard .markdown-preview-sizer { width: calc(100% - 28px) !important; }
+  .dashboard .stat-grid, .dashboard .shelf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard .board-grid { grid-template-columns: 1fr; }
+  .dashboard .rhythm-summary, .dashboard .rhythm-actions { grid-template-columns: 1fr; }
+  .dashboard .progress-hero { flex-wrap: wrap; }
+  .dashboard .progress-bar { flex: 1 1 100%; order: 3; }
+  .dashboard .task-list { grid-template-columns: 1fr; }
+  .dashboard .dashboard-panel { padding: 15px; }
+}

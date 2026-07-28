@@ -1,0 +1,10 @@
+{
+  "id": "spiral-updater",
+  "name": "互为螺旋·更新器",
+  "version": "1.0.0",
+  "minAppVersion": "1.7.2",
+  "description": "一键检查并安全更新「互为螺旋·知识操作系统」的模板与系统文件，绝不触碰你的笔记数据与 API Key。",
+  "author": "互为螺旋",
+  "authorUrl": "https://github.com/hwdemtv",
+  "isDesktopOnly": true
+}

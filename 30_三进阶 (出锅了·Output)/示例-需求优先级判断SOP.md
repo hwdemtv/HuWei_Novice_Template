@@ -1,5 +1,6 @@
 ---
 created: 2026-06-21
+asset_id: demand-prioritization
 status: 已发布
 tags:
   - 职场

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "templateVersion": "{{VERSION}}",
+  "releasedAt": "{{DATE}}",
+  "_comment": "打包时由 pack-release.mjs 注入 templateVersion/releasedAt；includeGlobs/excludeGlobs 为覆盖真相源，spiral-updater 插件与打包脚本共享本清单语义。",
+  "includeGlobs": [
+    "00_万法 (开箱即用·Hub)/**",
+    ".claude/CLAUDE.md",
+    ".claude/commands/**",
+    ".claude/skills/**",
+    "首页.md",
+    "Dashboard.md",
+    "中控台.canvas",
+    "课程进度追踪.md",
+    "README-安装说明.md",
+    "📖 开始之前.md",
+    ".obsidian/snippets/**",
+    ".obsidian/themes/**"
+  ],
+  "excludeGlobs": [
+    "00_万法 (开箱即用·Hub)/05_自定义模板库/**",
+    "00_万法 (开箱即用·Hub)/07_第二大脑/profile/**",
+    "00_万法 (开箱即用·Hub)/08_长期记忆/**",
+    ".claude/sessions/**",
+    ".claude/agents/**",
+    ".obsidian/plugins/**",
+    ".obsidian/workspace*.json"
+  ],
+  "deletions": [],
+  "releaseNotes": ""
+}
