@@ -48,7 +48,7 @@ function readBytes(abs) {
 
 async function collectFiles(dir, base, acc) {
   for (const e of await fsp.readdir(dir, { withFileTypes: true })) {
-    if (EXCLUDE_TOP.has(e.name)) continue;
+    if (EXCLUDE_TOP.has(e.name) || e.name.startsWith(".更新备份")) continue; // .更新备份_* 带时间戳，需前缀匹配
     const abs = path.join(dir, e.name);
     const rel = toFwd(path.relative(base, abs));
     if (e.isDirectory()) {
