@@ -26,6 +26,29 @@
     ".obsidian/plugins/**",
     ".obsidian/workspace*.json"
   ],
-  "deletions": [],
+  "deletions": [
+    "纳戒/L04-02-infographic-search-decision.png",
+    "纳戒/L05-01-framework-scattered-to-network.png",
+    "纳戒/L05-02-framework-link-types.png",
+    "纳戒/L15-01-timeline-rhythm-scales.png",
+    "纳戒/L15-02-timeline-daily-three-things.png",
+    "纳戒/L25-01-infographic-notes-to-database.png",
+    "纳戒/L25-02-infographic-query-types.png",
+    "纳戒/Calendar面板按钮.png",
+    "纳戒/全局搜索面板.png",
+    "纳戒/关系图谱.png",
+    "纳戒/出链列表.png",
+    "纳戒/反向链接.png",
+    "纳戒/命令面板输入反向.png",
+    "纳戒/在文档中插入模版.png",
+    "纳戒/局部图谱.png",
+    "纳戒/快捷键的设置.png",
+    "纳戒/插入表格.png",
+    "纳戒/搜索面板的两个按钮.png",
+    "纳戒/文件列表.png",
+    "纳戒/日历面板.png",
+    "纳戒/验证插件状态.png",
+    "纳戒/PixPin_2026-06-24_10-30-46.png"
+  ],
   "releaseNotes": ""
 }

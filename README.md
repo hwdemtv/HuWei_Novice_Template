@@ -7,7 +7,7 @@
 [![Obsidian](https://img.shields.io/badge/Obsidian-最新版-7C3AED?style=for-the-badge&logo=obsidian&logoColor=white)](https://obsidian.md)
 [![License](https://img.shields.io/badge/License-原创许可-red?style=for-the-badge)](LICENSE.md)
 [![Template](https://img.shields.io/badge/模板-80%2B个-0EA5E9?style=for-the-badge)](00_万法%20(开箱即用·Hub)/01_模板/)
-[![Plugins](https://img.shields.io/badge/插件-16个预装-10B981?style=for-the-badge)](.obsidian/community-plugins.json)
+[![Plugins](https://img.shields.io/badge/插件-18个预装-10B981?style=for-the-badge)](.obsidian/community-plugins.json)
 [![Course](https://img.shields.io/badge/课程-26课-F59E0B?style=for-the-badge)](00_万法%20(开箱即用·Hub)/06_课程/)
 
 > 不是花哨的笔记系统，而是一个帮你真正「学进去、讲出来、用得上」的知识操作系统。
@@ -27,7 +27,7 @@
  Inbox    Lab      Feynman    Output    Archive
 ```
 
-80+ 个模板、16 个预装插件、3 个 AI 工具、26 课系统教程——**解压即用，无需折腾**。
+80+ 个模板、18 个预装插件、3 个 AI 工具、26 课系统教程——**解压即用，无需折腾**。
 
 > 📖 完整的安装步骤、文件夹结构、包含内容与常见问题，请见 **[README-安装说明](README-安装说明.md)**（本页只做概览）。
 
@@ -83,7 +83,7 @@
 - **Level 3** · 进阶篇：AI 工具、模板自定义
 - **Level 4** · 大师篇：知识体系搭建、长期运营
 
-### 🔌 16 个预装插件（5 个默认启用）
+### 🔌 18 个预装插件（8 个默认启用）
 
 | 默认启用 | 用途 |
 |----------|------|
@@ -92,8 +92,11 @@
 | Calendar | 日历面板快速导航 |
 | Outliner | 大纲拖拽整理 |
 | Minimal Settings | 配套 Minimal 主题 |
+| Spiral Updater | 「检查模板更新」一键升级 |
+| Remotely Save | 多端同步（需自行配置网盘，见课程 L05a） |
+| Realclaudian | 内置 AI 助手（需自行配置 API Key） |
 
-> 另有 11 个进阶插件（Excalidraw、Tasks、Table Editor、Realclaudian、Surfing 等）已预装但默认关闭，按需启用。
+> 另有 10 个进阶插件（Excalidraw、Tasks、Table Editor、Surfing 等）已预装但默认关闭，按需启用。
 
 ---
 

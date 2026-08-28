@@ -36,3 +36,11 @@ Desktop.ini
 
 # 插件运行时状态（非 Key，是 UI/配置状态，入库会频繁变动）
 .obsidian/plugins/*/data.json
+
+# 纳戒 = 个人附件区：内容不进 git（也不进分发包，见 pack-release.mjs）
+# 产品图片/截图统一放 00_万法 (开箱即用·Hub)/_assets（更新通道可达）
+纳戒/*
+!纳戒/.gitkeep
+
+# Obsidian 默认未命名笔记（误触新建的空笔记，不入库不打包）
+未命名*.md

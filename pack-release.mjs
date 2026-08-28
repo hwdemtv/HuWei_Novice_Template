@@ -21,9 +21,11 @@ const RELEASED_AT = new Date().toISOString().slice(0, 10);
 const RELEASE_REPO = "hwdemtv/HuWei_Novice_Template";
 
 const EXCLUDE_TOP = new Set([".git",".trash",".stfolder",".codex",".agents","node_modules","spiral-updater-src",".更新备份","dist"]);
-const EXCLUDE_ROOT_FILES = new Set(["README.md",".gitignore",".stignore","pack-release.sh","pack-release.mjs","pack-release.legacy-win.sh",".template-version","发版说明.md","release.mjs"]);
-const EXCLUDE_FILE_RE = [/\.DS_Store$/,/Thumbs\.db$/i,/desktop\.ini$/i,/\.(zip|rar|7z)$/i,/sync-conflict/i];
-const EXCLUDE_PATHS = [".obsidian/workspace.json",".obsidian/workspace-mobile.json",".obsidian/workspaces.json",".claudian/sessions",".claude/sessions",".claude/agents","00_万法 (开箱即用·Hub)/06_课程/_视频脚本"];
+const EXCLUDE_ROOT_FILES = new Set(["README.md",".gitignore",".stignore","pack-release.sh","pack-release.mjs","pack-release.legacy-win.sh",".template-version","发版说明.md","release.mjs","latest.json"]);
+const EXCLUDE_FILE_RE = [/\.DS_Store$/,/Thumbs\.db$/i,/desktop\.ini$/i,/\.(zip|rar|7z)$/i,/sync-conflict/i,/^未命名( \d+)?\.md$/];
+// 纳戒/profile/长期记忆是用户数据区：内容永不进包（KEEP_DIRS 负责补 .gitkeep 空脚手架）。
+// 产品图片统一放 00_万法 (开箱即用·Hub)/_assets（在更新器 includeGlobs 覆盖内，可随更新送达老用户）。
+const EXCLUDE_PATHS = [".obsidian/workspace.json",".obsidian/workspace-mobile.json",".obsidian/workspaces.json",".claudian/sessions",".claude/sessions",".claude/agents","00_万法 (开箱即用·Hub)/06_课程/_视频脚本","纳戒","00_万法 (开箱即用·Hub)/07_第二大脑/profile","00_万法 (开箱即用·Hub)/08_长期记忆"];
 const KEEP_DIRS = ["10_一心 (随手丢·Inbox)/_候选记忆","10_一心 (随手丢·Inbox)/周回顾","00_万法 (开箱即用·Hub)/08_长期记忆/people","00_万法 (开箱即用·Hub)/08_长期记忆/projects","00_万法 (开箱即用·Hub)/08_长期记忆/wiki","00_万法 (开箱即用·Hub)/08_长期记忆/decisions","00_万法 (开箱即用·Hub)/07_第二大脑/profile","纳戒"];
 
 const toFwd = (p) => p.split(path.sep).join("/");
@@ -100,6 +102,7 @@ async function main() {
     let bytes;
     if (rel === ".claudian/claudian-settings.json") bytes = sanitizeClaudian(abs);
     else if (rel === ".obsidian/plugins/realclaudian/data.json") bytes = strToU8("{}");
+    else if (rel === ".obsidian/plugins/remotely-save/data.json") bytes = strToU8("{}"); // 个人同步配置(网盘/WebDAV),清空后再分发
     else bytes = readBytes(abs);
     zipObj[rel] = bytes;
   }
