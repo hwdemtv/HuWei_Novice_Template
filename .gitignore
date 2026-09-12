@@ -44,3 +44,10 @@ Desktop.ini
 
 # Obsidian 默认未命名笔记（误触新建的空笔记，不入库不打包）
 未命名*.md
+
+# 个人数据区（候选记忆/周回顾）：模板只带 .gitkeep 入库，个人内容不入库
+# 防 release.mjs 发版快照 git add -A 把个人消化产物扫进公开仓库
+10_一心 (随手丢·Inbox)/_候选记忆/*
+!10_一心 (随手丢·Inbox)/_候选记忆/.gitkeep
+10_一心 (随手丢·Inbox)/周回顾/*
+!10_一心 (随手丢·Inbox)/周回顾/.gitkeep
