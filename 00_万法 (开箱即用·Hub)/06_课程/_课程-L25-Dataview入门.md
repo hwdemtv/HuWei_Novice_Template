@@ -33,7 +33,7 @@ Dataview 就能帮你做到。这就是「把笔记当数据库用」。
 ![[L25-01-infographic-notes-to-database.png]]
 
 > [!note] 💡 课程注释
-> L01 把 Dataview 列为必装插件，但前面 20 课都没细讲。因为你**不需要懂它也能用这套系统**——首页和进度追踪的查询是现成的。但当你想自己做仪表盘、自动汇总时，Dataview 是那把钥匙。它是新手到高手的分水岭之一。
+> L01 把 Dataview 列为必装插件，但前面 21 门课都没细讲。因为你**不需要懂它也能用这套系统**——首页和进度追踪的查询是现成的。但当你想自己做仪表盘、自动汇总时，Dataview 是那把钥匙。它是新手到高手的分水岭之一。
 
 ---
 
@@ -59,7 +59,7 @@ FROM "10_一心 (随手丢·Inbox)"
 | `LIST` | 一个列表（带标题） | 想要一个简单的清单 |
 | `TABLE` | 一个表格（带多列） | 想显示笔记的多个属性 |
 | `TASK` | 待办事项列表 | 想汇总所有 `- [ ]` 任务 |
-| `CALENDAR` | 日历热力图 | 想看某日期字段的分布节奏（如阅读/写作打卡） |
+| `CALENDAR` | 月历视图（按天打点） | 想看某日期字段的分布节奏（如阅读/写作打卡） |
 
 ### 3. 四个关键语句：`FROM` / `WHERE` / `SORT` / `GROUP BY`
 
@@ -117,12 +117,14 @@ SORT file.ctime DESC
 > [!warning] 标签 ≠ frontmatter 字段
 > `FROM #火种` 查的是笔记正文中的**标签** `#火种`，和 frontmatter 里的 `status: 火种` 是两回事。如果你的火种笔记用的是 frontmatter 而不是标签，查询要改成：
 
-> ```dataview
-> LIST
-> FROM "文件夹名"
-> WHERE status = "火种"
-> SORT file.ctime DESC
-> ```
+````markdown
+```dataview
+LIST
+FROM "文件夹名"
+WHERE status = "火种"
+SORT file.ctime DESC
+```
+````
 
 ### 查询 2｜TABLE：列出 Lab 里的加工中笔记
 
@@ -193,14 +195,18 @@ finished: 2026-02-20
 ---
 ```
 
+> [!note] 💡 `pages` 字段要手动补
+> 官方「读书笔记模板」的 frontmatter 里**没有 `pages` 字段**（已有的是 type / created / shelf_type / cover / tags / author / category / rating / status / started / finished）。想用下面「平均页数」的查询，建读书笔记时记得手动加一行 `pages: 总页数`。
+
 字段统一后，下面 4 个查询各管一块，拼成一个完整看板：
 
-**① 年度统计**（总数 / 平均页数 / 平均评分）：
+**① 年度统计**（总数 / 平均页数 / 平均评分。注意：`rows` 只在 `GROUP BY` 之后才存在，想汇总成一行就用常数分组）：
 
 ````markdown
 ```dataview
-TABLE length(rows) AS "读书总数", round(sum(rows.pages)/length(rows)) AS "平均页数", round(sum(rows.rating)/length(rows), 1) AS "平均评分"
+TABLE WITHOUT ID length(rows) AS "读书总数", round(sum(rows.pages)/length(rows)) AS "平均页数", round(sum(rows.rating)/length(rows), 1) AS "平均评分"
 WHERE type = "读书笔记" AND status = "已完成" AND finished >= date("2026-01-01")
+GROUP BY "2026"
 ```
 ````
 
@@ -225,7 +231,7 @@ SORT length(rows) DESC
 ```
 ````
 
-**④ 阅读日历**（用 `CALENDAR`，热力图看阅读节奏）：
+**④ 阅读日历**（用 `CALENDAR`，月历打点看阅读节奏）：
 
 ````markdown
 ```dataview
@@ -243,12 +249,10 @@ WHERE type = "读书笔记" AND status = "已完成"
 
 > [!info]- 深入（可选）：`FLATTEN` 与 `DataviewJS`
 > - **`FLATTEN`**：把列表字段"摊平"成多行。一篇笔记若有多个作者 `authors: [A, B]`，`FLATTEN authors` 会拆成两行各算一次，适合统计嵌套列表。
-> - **`DataviewJS`**：用 `` ```dataviewjs `` 代码块写 JavaScript，能做查询语言做不到的复杂逻辑（循环、条件渲染）。高阶玩家专属，需要时再查[官方文档](https://blacksmithgu.github.io/obsidian-dataview/)。
+> - **`DataviewJS`**：用 `` ```dataviewjs `` 代码块写 JavaScript，能做查询语言做不到的复杂逻辑（循环、条件渲染）。**前提：在 Dataview 设置里开启「Enable JavaScript Queries」（默认关闭，首页和课程进度追踪的仪表盘也靠它）**。高阶玩家专属，需要时再查[官方文档](https://blacksmithgu.github.io/obsidian-dataview/)。
 
 > [!warning] ⚠️ 常见报错
-> - **查询不显示内容**：检查 `FROM` 的文件夹名/标签名是否完全一致（含中文和括号）
-> - **表格列是空的**：检查 frontmatter 字段名拼写，`status` 不是 `Status`（区分大小写）
-> - **插件没生效**：设置 → 第三方插件 → 确认 Dataview 已启用
+> 排错步骤统一维护在 [[00_万法 (开箱即用·Hub)/06_课程/_新手常见问题|新手常见问题 → 四、Dataview]]：表格显示成代码 / 页面空白看 **Q11**（插件启用、代码块格式、JavaScript 查询开关），查询结果为空看 **Q12**（`FROM` 名称、标签写法、大小写）。
 
 > [!tip] 心法
 > Dataview 的本质是：**你给笔记贴的标签和属性（frontmatter），都是未来查询的钩子**。所以前面 L03 让你认真填 frontmatter、L04 让你埋关键词——它们在这里兑现成「自动化的力量」。

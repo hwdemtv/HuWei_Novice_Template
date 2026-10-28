@@ -16,7 +16,8 @@ $FILE_PATH: 要消化的笔记路径（如果不指定，默认消化当前活�
    - 补充 → 标记为 `extends: [已有记忆路径]`
 5. **输出候选记忆**：写入 `10_一心/_候选记忆/` 目录
    - 文件名：`候选-{关键词}-{YYYYMMDD}.md`
-   - 格式包含：frontmatter（title/source/created/tags/status/conflicts）+ 正文
+   - 格式包含：frontmatter（title/id/source/created/tags/status/conflicts/origin/references）+ 正文
+   - `id` 生成规则：`mem-{YYYYMMDD}-{4位随机小写字母数字}`，终身不变，后续确认/合并/覆盖时原样继承
 6. **汇报**：告诉用户消化了什么、发现了什么冲突、建议怎么处理
 
 ## 输出格式
@@ -24,13 +25,16 @@ $FILE_PATH: 要消化的笔记路径（如果不指定，默认消化当前活�
 ```markdown
 ---
 title: 候选记忆 - {标题}
-source: "[原始文件路径]"
+id: mem-{YYYYMMDD}-{4位随机}        # 稳定ID：被引用、被合并时认ID不认路径
+source: "[[库内笔记路径]]"           # 库内来源一律 wikilink；库外来源才用普通路径字符串；多来源用列表
 created: {日期}
 tags:
   - 候选记忆
   - {主题标签}
 status: pending  # pending / confirmed / rejected
-conflicts: []    # 冲突列表
+conflicts: []    # 冲突列表，引用格式：[[记忆路径]] (id: mem-xxx)
+origin: []       # 本条记忆从哪条笔记/记忆延伸来（wikilink 列表，可空）
+references: []   # 相关笔记/参考资料（wikilink 列表，可空）
 ---
 
 # {标题}
@@ -47,3 +51,5 @@ conflicts: []    # 冲突列表
 - 绝不直接写入 `00_万法/08_长期记忆/`
 - 原始文件只读，不做任何修改
 - 如果当前文件太短（<100字），提示用户内容不足
+- 库内来源必须用 wikilink（`[[路径]]`），不得写纯路径字符串——纯路径不随 Obsidian 移动/改名更新，会静默断链
+- 引用失效处理：wikilink 断 → 按引用里的 id 全库搜 `id:` 字段，唯一命中 = 修复并明确报告；零命中/多命中 = 标 ⚠️ 断链；**绝不按标题猜测匹配**
