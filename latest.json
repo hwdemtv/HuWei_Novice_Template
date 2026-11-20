@@ -1,7 +1,7 @@
 {
-  "templateVersion": "1.0.6",
-  "releasedAt": "2026-10-28",
-  "downloadUrl": "https://github.com/hwdemtv/HuWei_Novice_Template/releases/download/v1.0.6/HuWei_Novice_Template-v1.0.6.zip",
-  "sha256": "6d7815e833d02e316c4db095e245af7d5a86d68c36707195483c450b075a5ace",
+  "templateVersion": "1.0.7",
+  "releasedAt": "2026-11-20",
+  "downloadUrl": "https://github.com/hwdemtv/HuWei_Novice_Template/releases/download/v1.0.7/HuWei_Novice_Template-v1.0.7.zip",
+  "sha256": "593aacce2a4cdaa68b32a6a5c38bc4396e452635fb6f98ccb977973ab7a5fa0d",
   "manifestUrl": "https://raw.githubusercontent.com/hwdemtv/HuWei_Novice_Template/master/latest.json"
 }

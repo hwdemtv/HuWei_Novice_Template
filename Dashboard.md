@@ -11,6 +11,38 @@ tags:
 > 今天做什么，一眼就清楚。数据由 Dataview 自动读取，无需手动维护数字。
 
 ```dataviewjs
+// 00 · 布局引擎（借鉴 Hearth 多栏布局）：向本页注入阅读视图双栏样式与任务勾选样式。
+// 不依赖任何新插件、不改 CSS 片段；离开页面自动清理样式（dv.component 卸载钩子）。
+// 删除本块 = 恢复原来的单栏纵向堆叠，其余块不受影响。
+const STYLE_ID = "dashboard-layout-engine";
+if (!document.getElementById(STYLE_ID)) {
+  const style = document.head.createEl("style", { attr: { id: STYLE_ID } });
+  // 仅阅读视图双栏：CM6 编辑视图保持纵向堆叠（grid 在 CM6 动态宽度下会导致面板重叠，dashboard.css 已有教训）。
+  // 仅对「同时含调度台+热力图面板」的页面生效，不波及其他 dashboard 页面（首页/今日待处理/向导）。
+  const scope = ".markdown-preview-view.dashboard .markdown-preview-sizer:has(.overview-panel):has(.heatmap-panel)";
+  style.textContent = `
+    ${scope} { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; align-items: start; }
+    ${scope} > * { grid-column: 1 / -1; min-width: 0; }
+    ${scope} > *:has(.block-language-dataviewjs) { grid-column: auto; }
+    /* 左栏：01 调度台、03 时间节奏；右栏：02 热力图、04 书架；05 看板跨全行 */
+    ${scope} > *:has(.overview-panel) { grid-column: 1; }
+    ${scope} > *:has(.rhythm-panel) { grid-column: 1; }
+    ${scope} > *:has(.heatmap-panel) { grid-column: 2; }
+    ${scope} > *:has(.shelf-panel) { grid-column: 2; }
+    ${scope} > *:has(.board-panel) { grid-column: 1 / -1; }
+    /* 任务勾选视觉（#1）：复选框 + 完成态划线 */
+    .dashboard .task-item { display: flex; align-items: center; }
+    .dashboard .task-item .task-check { flex: none; margin: 0 6px 0 0; cursor: pointer; }
+    .dashboard .task-item .internal-link { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .dashboard .task-item.is-done .internal-link { text-decoration: line-through; opacity: 0.55; }
+  `;
+  dv.component.register(() => style.detach());
+}
+// 本块自身不渲染任何可见内容，也不参与双栏 grid。
+dv.container.style.display = "none";
+```
+
+```dataviewjs
 // 01 · 调度台统计卡
 const folders = {
   inbox: "10_一心 (随手丢·Inbox)",
@@ -141,13 +173,34 @@ const statGrid = el(overview, "div", "stat-grid");
 });
 
 const taskList = el(overview, "div", "task-preview");
-el(taskList, "h3", "mini-heading", "下一步");
+el(taskList, "h3", "mini-heading", "下一步（可直接勾选完成）");
 if (openTasks.length === 0) {
   el(taskList, "p", "empty-state", "🎉 没有待处理任务。");
 } else {
   const ul = el(taskList, "ul", "task-list");
   openTasks.slice(0, 4).forEach(({ task: t }) => {
     const item = el(ul, "li", "task-item");
+    // 勾选即修改源笔记：仅把该任务行的 [ ] 翻转为 [x]，其余内容不动（与在笔记内勾选效果一致）。
+    const box = item.createEl("input", { type: "checkbox", cls: "task-check" });
+    box.setAttr("aria-label", "标记完成");
+    box.addEventListener("change", async () => {
+      if (!box.checked) return;
+      const file = dv.app.vault.getAbstractFileByPath(t.path);
+      if (!file) { box.checked = false; return; }
+      try {
+        await dv.app.vault.process(file, text => {
+          const lines = text.split("\n");
+          const line = lines[t.line];
+          if (line != null && line.includes("[ ]")) lines[t.line] = line.replace("[ ]", "[x]");
+          return lines.join("\n");
+        });
+        item.classList.add("is-done");
+        box.disabled = true;
+      } catch (e) {
+        console.error("[dash-task] 完成任务失败", e);
+        box.checked = false;
+      }
+    });
     link(item, t.path, t.text.replace(/\[\[([^\]|]+)(\|[^\]]+)?\]\]/g, "$1"));
   });
 }
@@ -581,8 +634,10 @@ columns.forEach(col => {
 ```
 
 > [!tip] 使用说明
-> - 本页由 5 个**独立的 dataviewjs 代码块**组成（调度台 / 热力图 / 时间节奏 / 我的书架 / 项目看板），每块自包含配置与工具函数，可单独编辑、移动或删除。
-> - 每个代码块都为自身容器加了 `dashboard-shell` 类，以继承颜色变量与居中宽度；因此每块面板现在**独占整行**（由原来的同容器多列并排，改为自上而下堆叠）。
+> - 本页由 6 个**独立的 dataviewjs 代码块**组成（00 布局引擎 / 01 调度台 / 02 热力图 / 03 时间节奏 / 04 我的书架 / 05 项目看板），每块自包含配置与工具函数，可单独编辑、移动或删除。
+> - **双栏布局**：阅读视图下，00 块会把面板排成双栏（左：调度台+时间节奏，右：热力图+书架，看板跨全行）；编辑视图保持纵向堆叠。不依赖新插件，删除 00 块即恢复单栏。
+> - **任务可直接勾选**：「下一步」面板勾选复选框，即把源笔记中该任务行翻转为 `[x]`，与在笔记内勾选效果一致。
+> - 每个代码块都为自身容器加了 `dashboard-shell` 类，以继承颜色变量与居中宽度。
 > - 从 [[中控台.canvas|知识中控台]] 查看整体流转；从本页安排当天行动。
 > - 统计仅按显式 `asset_id` 合并跨阶段副本；没有 `asset_id` 的笔记始终独立计数。每个资产的热力图只记录一次 `created`。
 > - 书架与本周输出只统计明确填写 `published_date` 的输出；待办只统计 Inbox 与 Lab，并按截止日、优先级、最近修改时间排序。

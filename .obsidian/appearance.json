@@ -3,5 +3,6 @@
   "enabledCssSnippets": [
     "dashboard",
     "knowledge-shelf"
-  ]
+  ],
+  "showRibbon": true
 }
